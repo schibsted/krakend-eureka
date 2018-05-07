@@ -5,7 +5,7 @@ import (
 )
 
 // Namespace is the key to use to store and access the custom config data
-const BackendNamespace = "spt/gateway/backend/eureka"
+const BackendNamespace = "github.com/tgracchus/krakend-eureka"
 
 type BackendExtraConfig struct {
 	EurekaAppName string
@@ -15,8 +15,8 @@ var DefaultBackendExtraConfig = BackendExtraConfig{EurekaAppName: ""}
 
 var EmptyBackendExtraConfig = BackendExtraConfig{}
 
-func (e BackendExtraConfig) AsMap() map[interface{}]interface{} {
-	data := make(map[interface{}]interface{})
+func (e BackendExtraConfig) AsMap() map[string]interface{} {
+	data := make(map[string]interface{})
 	data[BACKEND_EUREKA_APP_NAME] = e.EurekaAppName
 	return data
 }
