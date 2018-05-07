@@ -1,8 +1,9 @@
 package eureka
 
 import (
-	"github.com/devopsfaith/krakend/config"
 	"testing"
+
+	"github.com/devopsfaith/krakend/config"
 )
 
 func TestBackendExtraConfig(t *testing.T) {

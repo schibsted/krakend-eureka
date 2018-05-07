@@ -32,7 +32,7 @@ func BackendConfigGetter(e config.ExtraConfig) interface{} {
 	if !ok {
 		return EmptyBackendExtraConfig
 	}
-	extra, ok := v.(map[interface{}]interface{})
+	extra, ok := v.(map[string]interface{})
 	if !ok {
 		return DefaultBackendExtraConfig
 	}
@@ -40,7 +40,7 @@ func BackendConfigGetter(e config.ExtraConfig) interface{} {
 	return NewBackendExtraConfigFromMap(extra)
 }
 
-func NewBackendExtraConfigFromMap(data map[interface{}]interface{}) BackendExtraConfig {
+func NewBackendExtraConfigFromMap(data map[string]interface{}) BackendExtraConfig {
 	eurekaAppName := DefaultBackendExtraConfig.EurekaAppName
 	if data != nil {
 		if eureka, ok := data[BACKEND_EUREKA_APP_NAME]; ok {
