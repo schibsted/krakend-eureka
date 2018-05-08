@@ -1,3 +1,8 @@
+//
+// Copyright 2011 - 2018 Schibsted Products & Technology AS.
+// Licensed under the terms of the Apache 2.0 license. See LICENSE in the project root.
+//
+
 package eureka
 
 import (
@@ -7,6 +12,7 @@ import (
 
 	"errors"
 	"fmt"
+
 	"github.com/devopsfaith/krakend/config"
 	"github.com/devopsfaith/krakend/logging"
 	"github.com/devopsfaith/krakend/sd"
