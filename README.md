@@ -1,9 +1,10 @@
 # krakend-eureka
-krakend-eureka integration
+krakend eureka integration.
 
+The integration is based on a custom subscriber using the [fargo library](https://github.com/hudl/fargo)
 
-Example
-``` 
+## Usage Example
+```go
 	logger, err := logging.NewLogger("INFO", os.Stdout, "[KRAKEND]")
 	if err != nil {
 		log.Fatal("ERROR:", err.Error())
@@ -20,12 +21,30 @@ Example
 	}
 	eurekaClient := NewFargoEurekaClient(eurekaLocalAppInstance, "http://localhost:8080", logger)
 
-	routerFactory := kgin.DefaultFactory(proxy.DefaultFactoryWithSubscriber(logger, eurekaClient.NewSubscriber(sd.GetSubscriber)), logger)
+  subscriber := eurekaClient.NewSubscriber(sd.GetSubscriber)
+	routerFactory := kgin.DefaultFactory(proxy.DefaultFactoryWithSubscriber(logger, subscriber), logger)
 	routerFactory.New().Run(serviceConfig)
 ```
 
-Config Example
+We need to create an app instance to register the current application to eureka:
+```go
+eurekaLocalAppInstance, err := NewLocalAppInstance(8000, "HELLO")
 ```
+An aws aware application instance can be used: **NewAwsAppInstance**
+
+Then, a eureka client should be create with:
+```go
+eurekaClient := NewFargoEurekaClient(eurekaLocalAppInstance, "http://localhost:8080", logger)
+```
+
+And wire it with krakend with a new Subscriber
+```go
+subscriber := eurekaClient.NewSubscriber(sd.GetSubscriber)
+routerFactory := kgin.DefaultFactory(proxy.DefaultFactoryWithSubscriber(logger, subscriber), logger)
+```
+
+## Config Example
+```yml
 {
   "version": 2,
   "max_idle_connections": 250,
@@ -58,3 +77,5 @@ Config Example
   ]
 }
 ```
+
+The only configuration needed it's the eureka backend application name
