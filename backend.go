@@ -10,7 +10,7 @@ import (
 )
 
 // Namespace is the key to use to store and access the custom config data
-const BackendNamespace = "github.com/tgracchus/krakend-eureka"
+const BackendNamespace = "github.com/schibsted/krakend-eureka"
 
 type BackendExtraConfig struct {
 	EurekaAppName string

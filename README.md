@@ -65,7 +65,7 @@ routerFactory := kgin.DefaultFactory(proxy.DefaultFactoryWithSubscriber(logger, 
             "http://localhost:8000"
           ],
           "extra_config": {
-            "github.com/tgracchus/krakend-eureka": {
+            "github.com/schibsted/krakend-eureka": {
               "eureka_app_name": "crash",
             }
           }
